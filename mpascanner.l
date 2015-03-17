@@ -5,85 +5,59 @@
 
 #define YY_NO_INPUT
 
-int column;
-int line;
+int column=1;
+int line=1;
 char* yytext;
 
 int beginComCord[2];
 %}
 
 %option nounput
-
-A [aA]
-B [bB]
-C [cC]
-D [dD]
-E [eE]
-F [fF]
-G [gG]
-H [hH]
-I [iI]
-J [jJ]
-K [kK]
-L [lL]
-M [mM]
-N [nN]
-O [oO]
-P [pP]
-Q [qQ]
-R [rR]
-S [sS]
-T [tT]
-U [uU]
-V [vV]
-W [wW]
-X [xX]
-Y [yY]
-Z [zZ]
+%option case-insensitive
 
 INTLIT		[0-9]+
 
 EXP			[eE]([+-])?[0-9]+
 REALLIT		([0-9][0-9]*)"."([0-9][0-9]*)({EXP})?|([0-9][0-9]*){EXP}
 
-RESERVED	{A}{R}{C}{T}{A}{N}|{A}{B}{S}|{A}{R}{R}{A}{Y}|{C}{H}{A}{R}|{C}{H}{R}|{C}{A}{S}{E}|{C}{O}{N}{S}{T}|{C}{O}{S}|{D}{I}{S}{P}{O}{S}{E}|{D}{O}{W}{N}{T}{O}|{E}{O}{F}|{E}{O}{L}{N}|{E}{X}{P}|{F}{I}{L}{E}|{F}{O}{R}|{G}{E}{T}|{G}{O}{T}{O}|{I}{N}|{I}{N}{P}{U}{T}|{L}{A}{B}{E}{L}|{L}{N}|{N}{I}{L}|{O}{F}|{P}{A}{C}{K}|{P}{A}{C}{K}{E}{D}|{P}{R}{O}{C}{E}{D}{U}{R}{E}|{R}{E}{C}{O}{R}{D}|{S}{E}{T}|{T}{O}|{T}{Y}{P}{E}|{W}{I}{T}{H}|{U}{N}{P}{A}{C}{K}|{M}{A}{X}{I}{N}{T}|{N}{E}{W}|{O}{D}{D}|{O}{R}{D}|{P}{A}{G}{E}|{P}{R}{E}{D}|{P}{U}{T}|{R}{E}{A}{D}|{R}{E}{A}{D}{L}{N}|{R}{E}{S}{E}{T}|{R}{E}{W}{R}{I}{T}{E}|{R}{O}{U}{N}{D}|{S}{I}{N}|{S}{Q}{R}|{S}{Q}{R}{T}|{S}{U}{C}{C}|{T}{E}{X}{T}|{T}{R}{U}{N}{C}|{W}{R}{I}{T}{E}
+RESERVED	arctan|abs|array|char|chr|case|const|cos|dispose|downto|eof|eoln|exp|file|for|get|goto|in|input|label|ln|nil|of|pack|packed|procedure|record|set|to|type|with|unpack|maxint|new|odd|ord|page|pred|put|read|readln|reset|rewrite|round|sin|sqr|sqrt|succ|text|trunc|write
 
 NQUOTE		[^'\n]
-STRING		\'({NQUOTE}|\')*\'
-STRINGUN	\'({NQUOTE}|\')*
+STRING		\'({NQUOTE}|\'\')*\'
+STRINGUN	\'({NQUOTE}|\'\')*
 
 SCOMM		"(*"|"{"
 ECOMM		"*)"|"}"
 
 ASSIGN  	":="
-BEGIN       {B}{E}{G}{I}{N}
+BEGIN       begin
 COLON		":"
 COMMA		","
-DO 			{D}{O}
+DO 			do
 DOT			"."
-ELSE		{E}{L}{S}{E}
-END			{E}{N}{D}
-FORWARD		{F}{O}{R}{W}{A}{R}{D}
-FUNCTION	{F}{U}{N}{C}{T}{I}{O}{N}
-IF			{I}{F}
+ELSE		else
+END			end
+FORWARD		forward
+FUNCTION	function
+IF			if
 LBRAC		"("
-NOT 		{N}{O}{T}
-OUTPUT		{O}{U}{T}{P}{U}{T}
-PARAMSTR	{P}{A}{R}{A}{M}{S}{T}{R}
-PROGRAM     {P}{R}{O}{G}{R}{A}{M}
+NOT 		not
+OUTPUT		output
+PARAMSTR	paramstr
+PROGRAM     program
 RBRAC 		")"
-REPEAT		{R}{E}{P}{E}{A}{T}
+REPEAT		repeat
 SEMIC		";"
-THEN		{T}{H}{E}{N}
-UNTIL		{U}{N}{T}{I}{L}
-VAL 		{V}{A}{L}
-VAR 		{V}{A}{R}
-WHILE  		{W}{H}{I}{L}{E}
-WRITELN 	{W}{R}{I}{T}{E}{L}{N}
-OP1			{A}{N}{D}|{O}{R}
+THEN		then
+UNTIL		until
+VAL 		val
+VAR 		var
+WHILE  		while
+WRITELN 	writeln
+OP1			and|or
 OP2			"<"|">"|"="|"<>"|"<="|">="
 OP3			"+"|"-"
-OP4			"*"|"/"|{M}{O}{D}|{D}{I}{V}
+OP4			"*"|"/"|mod|div
 
 ID			([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*
 
