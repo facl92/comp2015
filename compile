@@ -1,0 +1,2 @@
+lex mpascanner.l
+gcc -o prog lex.yy.c -ll
