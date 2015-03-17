@@ -43,14 +43,13 @@ Z [zZ]
 
 INTLIT		([1-9][0-9]*)|0
 
-EXP			[eE]([+-])?[0-9]+
-REALLIT		([0-9][0-9]*)"."([0-9][0-9]*)({EXP})?|([1-9][0-9]*){EXP}
-
-RESERVED	{A}{R}{R}{A}{Y}|{C}{H}{A}{R}|{C}{A}{S}{E}|{C}{O}{N}{S}{T}|{D}{O}{W}{N}{T}{O}|{F}{I}{L}{E}|{F}{O}{R}|{G}{O}{T}{O}|{I}{N}|{L}{A}{B}{E}{L}|{N}{I}{L}|{O}{F}|{P}{A}{C}{K}{E}{D}|{P}{R}{O}{C}{E}{D}{U}{R}{E}|{R}{E}{C}{O}{R}{D}|{S}{E}{T}|{T}{O}|{T}{Y}{P}{E}|{W}{I}{T}{H}
+EXP			{E}[+-]?[0-9]+
+REALLIT		([0-9]+\.[0-9]+?|[0-9]+?\.?[0-9]+){EXP}?
+RESERVED	{A}{R}{C}{T}{A}{N}|{A}{B}{S}|{A}{R}{R}{A}{Y}|{C}{H}{A}{R}|{C}{H}{R}|{C}{A}{S}{E}|{C}{O}{N}{S}{T}|{C}{O}{S}|{D}{I}{S}{P}{O}{S}{E}|{D}{O}{W}{N}{T}{O}|{E}{O}{F}|{E}{O}{L}{N}|{E}{X}{P}|{F}{I}{L}{E}|{F}{O}{R}|{G}{E}{T}|{G}{O}{T}{O}|{I}{N}|{I}{N}{P}{U}{T}|{L}{A}{B}{E}{L}|{L}{N}|{N}{I}{L}|{O}{F}|{P}{A}{C}{K}|{P}{A}{C}{K}{E}{D}|{P}{R}{O}{C}{E}{D}{U}{R}{E}|{R}{E}{C}{O}{R}{D}|{S}{E}{T}|{T}{O}|{T}{Y}{P}{E}|{W}{I}{T}{H}|{U}{N}{P}{A}{C}{K}|{M}{A}{X}{I}{N}{T}|{N}{E}{W}|{O}{D}{D}|{O}{R}{D}|{P}{A}{G}{E}|{P}{R}{E}{D}|{P}{U}{T}|{R}{E}{A}{D}|{R}{E}{A}{D}{L}{N}|{R}{E}{S}{E}{T}|{R}{E}{W}{R}{I}{T}{E}|{R}{O}{U}{N}{D}|{S}{I}{N}|{S}{Q}{R}|{S}{Q}{R}{T}|{S}{U}{C}{C}|{T}{E}{X}{T}|{T}{R}{U}{N}{C}|{W}{R}{I}{T}{E}
 
 NQUOTE		[^'\n]
-STRING		\'([^'\n]|\'\')*\'
-STRINGUN	\'([^'\n]|\'\')*
+STRING		\'({NQUOTE}|\')*\'
+STRINGUN	\'({NQUOTE}|\')*
 
 SCOMM		"(*"|"{"
 ECOMM		"*)"|"}"
@@ -131,8 +130,8 @@ ID			([a-z]|[A-Z)([a-z]|[A-Z]|[0-9])*
 <CODE>{RESERVED}    {column = column + yyleng; printf("RESERVED(%s)\n",yytext);}
 
 <CODE>{INTLIT}    	{column = column + yyleng;  printf("INTLIT(%d)\n",atoi(yytext));}
-<CODE>{STRING}    	{column = column + yyleng;  printf("STRING(%s)\n",yytext);}
 <CODE>{REALLIT}    	{column = column + yyleng;  printf("REALLIT(%s)\n",yytext);}
+<CODE>{STRING}    	{column = column + yyleng;  printf("STRING(%s)\n",yytext);}
 <CODE>{STRINGUN}	{printf("Line %d, col %d: unterminated string\n",line,column);column = column + yyleng;}
 
 <CODE>{ID}     		{column = column + yyleng;  printf("ID(%s)\n",yytext);}
