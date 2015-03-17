@@ -41,7 +41,7 @@ X [xX]
 Y [yY]
 Z [zZ]
 
-INTLIT		([1-9][0-9]*)|0
+INTLIT		[0-9]+
 
 EXP			[eE]([+-])?[0-9]+
 REALLIT		([0-9][0-9]*)"."([0-9][0-9]*)({EXP})?|([0-9][0-9]*){EXP}
@@ -129,7 +129,7 @@ ID			([a-z]|[A-Z)([a-z]|[A-Z]|[0-9])*
 <CODE>{OP4}         {column = column + yyleng; printf("OP4(%s)\n",yytext);}
 <CODE>{RESERVED}    {column = column + yyleng; printf("RESERVED(%s)\n",yytext);}
 
-<CODE>{INTLIT}    	{column = column + yyleng;  printf("INTLIT(%d)\n",atoi(yytext));}
+<CODE>{INTLIT}    	{column = column + yyleng;  printf("INTLIT(%s)\n",yytext);}
 <CODE>{REALLIT}    	{column = column + yyleng;  printf("REALLIT(%s)\n",yytext);}
 <CODE>{STRING}    	{column = column + yyleng;  printf("STRING(%s)\n",yytext);}
 <CODE>{STRINGUN}	{printf("Line %d, col %d: unterminated string\n",line,column);column = column + yyleng;}
