@@ -23,8 +23,8 @@ REALLIT		([0-9][0-9]*)"."([0-9][0-9]*)({EXP})?|([0-9][0-9]*){EXP}
 RESERVED	arctan|abs|array|char|chr|case|const|cos|dispose|downto|eof|eoln|exp|file|for|get|goto|in|input|label|ln|nil|of|pack|packed|procedure|record|set|to|type|with|unpack|maxint|new|odd|ord|page|pred|put|read|readln|reset|rewrite|round|sin|sqr|sqrt|succ|text|trunc|write
 
 NQUOTE		[^'\n]
-STRING		\'({NQUOTE}|\'\')*\'
-STRINGUN	\'({NQUOTE}|\'\')*
+STRING		'({NQUOTE}|'')*'
+STRINGUN	'({NQUOTE}|'')*
 
 SCOMM		"(*"|"{"
 ECOMM		"*)"|"}"
